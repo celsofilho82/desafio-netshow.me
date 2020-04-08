@@ -1,5 +1,5 @@
 class Video < ApplicationRecord
   belongs_to :user
-  validates :description, :url, presence: true
+  validates :title, :description, :url, presence: true
   has_one_attached :video
 end

@@ -1,14 +1,14 @@
-class VideoPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def new?
+  def show?
     return true
   end
-  
+
   def create?
     return true
   end
@@ -20,5 +20,4 @@ class VideoPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
-
 end
