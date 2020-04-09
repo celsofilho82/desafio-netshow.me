@@ -9,16 +9,20 @@ class VideoPolicy < ApplicationPolicy
     return true
   end
   
+  def show?
+    return true
+  end
+
   def create?
     return true
   end
 
   def update?
-    record.user == user
+    record.user == current_user
   end
 
   def destroy?
-    record.user == user
+    record.user == current_user
   end
 
 end
