@@ -14,10 +14,10 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.user = current_user
+    authorize @video
     @video.save
     if @video.save
       redirect_to root_path
-      authorize @video
     else
       render :new
     end
