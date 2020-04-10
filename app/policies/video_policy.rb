@@ -5,6 +5,10 @@ class VideoPolicy < ApplicationPolicy
     end
   end
 
+  def my_videos?
+    return true
+  end
+
   def new?
     return true
   end

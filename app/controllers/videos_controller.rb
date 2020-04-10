@@ -1,6 +1,13 @@
 class VideosController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   
+  
+  def my_videos
+    @videos = Video.where(:user == current_user)
+    authorize @videos
+  end
+  
+  
   def index
     @videos = policy_scope(Video)
   end

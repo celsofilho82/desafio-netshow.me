@@ -1,0 +1,14 @@
+<% @videos.each do |video| %>
+  <div class="container">
+    <div class="card-product">
+      <video width="320" height="240" controls>
+            <source src=<%= video.url%>  type="application/x-mpegURL">
+            Your browser does not support the video tag.
+      </video> 
+      <div class="card-product-infos">
+        <h2><%= video.title %></h2>
+        <p><%= video.description %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
