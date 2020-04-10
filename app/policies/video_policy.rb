@@ -22,11 +22,11 @@ class VideoPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == current_user
+    return true
   end
 
   def destroy?
-    record.user == current_user
+    return true
   end
 
 end

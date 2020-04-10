@@ -7,7 +7,6 @@ class VideosController < ApplicationController
     authorize @videos
   end
   
-  
   def index
     @videos = policy_scope(Video)
   end
@@ -20,26 +19,50 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
+    authorize @video
     @video.user = current_user
     @video.views = 0
     if @video.save
       redirect_to root_path
-      authorize @video
     else
       render :new
     end
   end
 
   def show
-    @videos = Video.where(:user == current_user)
-    authorize @videos
+    @video = Video.find(params[:id])
+    authorize @video
   end
+
+  def edit
+    @video = Video.find(params[:id])
+    authorize @video
+    @user = User.find(params[:user_id])
+  end
+
+  def update
+    @video = Video.find(params[:id])
+    authorize @video
+    if @video.update(video_params)
+      redirect_to my_videos_path
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    @video = Video.find(params[:id])
+    authorize @video
+    @video.destroy
+    redirect_to my_videos_path
+  end
+  
   
   
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :url, :user_id)
+    params.require(:video).permit(:title, :description, :url, :user_id, :id)
   end
 
 end

@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Add new video your library</h1>
+  <h1>Change video</h1>
 
-  <%= simple_form_for @video, url: user_videos_path do |f| %>
+  <%= simple_form_for [@user, @video], url: user_video_path do |f| %>
   <%= f.error_notification %>
   <div>
     <%= f.input :title, required: true %>
