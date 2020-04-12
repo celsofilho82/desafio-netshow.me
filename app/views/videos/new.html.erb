@@ -1,22 +1,22 @@
 <div class="container">
-  <h1>Add new video your library</h1>
-
+  <h2>Add a new video to your collection</h2>
   <%= simple_form_for @video, url: user_videos_path do |f| %>
   <%= f.error_notification %>
-  <div>
-    <%= f.input :title, required: true %>
-  </div>
+    <div>
+      <%= f.input :title, required: true %>
+    </div>
 
-  <div>
-    <%= f.input :description %>
-  </div>
+    <div>
+      <%= f.input :description %>
+    </div>
 
-  <div>
-    <%= f.input :url %>
-  </div>
+    <div>
+      <%= f.input :url %>
+    </div>
 
-  <div>
-    <%= f.button :submit, class: 'btn btn-primary' %>
-  </div>
+    <div>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
   <% end %>
+  <p><%= link_to "Back", :back %></p>
 </div>

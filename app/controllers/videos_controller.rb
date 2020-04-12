@@ -1,9 +1,9 @@
 class VideosController < ApplicationController
+  before_action :set_video, only: [:edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: :index
   
-  
   def my_videos
-    @videos = Video.where(:user == current_user)
+    @videos = Video.where(user: current_user)
     authorize @videos
   end
   
@@ -29,20 +29,11 @@ class VideosController < ApplicationController
     end
   end
 
-  def show
-    @video = Video.find(params[:id])
-    authorize @video
-  end
-
   def edit
-    @video = Video.find(params[:id])
-    authorize @video
     @user = User.find(params[:user_id])
   end
 
   def update
-    @video = Video.find(params[:id])
-    authorize @video
     if @video.update(video_params)
       redirect_to my_videos_path
     else
@@ -51,18 +42,20 @@ class VideosController < ApplicationController
   end
   
   def destroy
-    @video = Video.find(params[:id])
-    authorize @video
     @video.destroy
     redirect_to my_videos_path
   end
-  
-  
   
   private
 
   def video_params
     params.require(:video).permit(:title, :description, :url, :user_id, :id)
   end
+
+  def set_video
+    @video = Video.find(params[:id])
+    authorize @video
+  end
+  
 
 end

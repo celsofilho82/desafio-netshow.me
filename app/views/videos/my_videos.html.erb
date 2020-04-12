@@ -1,17 +1,14 @@
 <div class="container">
   <p><%= link_to "New Video", new_user_video_path(current_user) , class: "btn btn-primary" %></p>
   <% @videos.each do |video| %>
-  <div class="card-product">
-    <video width="320" height="240" controls>
-      <source src=<%= video.url%> type="application/x-mpegURL">
-      Your browser does not support the video tag.
-    </video>
-    <div class="card-product-infos">
-      <h2><%= video.title %></h2>
-      <p><%= video.description %></p>
-      <p><%= link_to "Edit", edit_user_video_path(current_user, video) %></p>
-      <p><%= link_to "Delete", video_path(video), :method => :delete %></p>
+    <div class="card-product">
+      <img src= <%= image_path('video-generic') %> />
+      <div class="card-product-infos">
+        <h2><%= video.title %></h2>
+        <p><%= video.description %></p>
+        <p><%= link_to "Edit", edit_user_video_path(current_user, video) %></p>
+        <p><%= link_to "Delete", video_path(video), method: :delete, data: { confirm: "Are you sure?" } %></p>
+      </div>
     </div>
-  </div>
   <% end %>
 </div>
