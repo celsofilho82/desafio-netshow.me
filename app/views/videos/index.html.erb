@@ -1,27 +1,27 @@
  <div class="container">
-   <div class="flex-container">
-     <% @videos.each do |video| %>
-      <div class="card-trip">        
-        <video id=<%='video'%><%= video.id %> width=400 class="video-js vjs-default-skin" controls>
-          <source src=<%= video.url %> type="application/x-mpegURL">
-        </video>        
-        <script>
-          var player = videojs(<%= 'video' %><%= video.id %>);
-        </script>
-        <div class="card-trip-infos">
-          <div>
-            <h2><%= video.title %></h2>
-            <p><%= video.description %></p>
+    <div class="row">
+      <% @videos.each do |video| %>
+        <div class="col-sm-4">
+          <div class="card-trip">
+            <video id=<%='video'%><%= video.id %> width=400 class="video-js vjs-default-skin" controls>
+              <source src=<%= video.url %> type="application/x-mpegURL">
+            </video>
+            <script>
+              var player = videojs(<%='video'%><%=video.id%>);
+            </script>
+            <div class="card-trip-infos">
+              <div>
+                <h2><%= video.title %></h2>
+                <p><%= video.description %></p>
+              </div>
+             <% if video.user.photo.attached? %>
+             <%= cl_image_tag video.user.photo.key, height: 40, width: 40, crop: :fill, class: "card-trip-user avatar-bordered" %>
+             <% else %>
+             <%= image_tag("generic-user.png", size: "40", alt: "generic-user", class: "card-trip-user avatar-bordered")%>
+             <% end %>
+            </div>
           </div>
-            <h2 class="card-trip-pricing">views <%= video.views %></h2>
-            <% if video.user.photo.attached? %>
-                <%= cl_image_tag video.user.photo.key, height: 40, width: 40, crop: :fill, class: "card-trip-user avatar-bordered" %>
-            <% else %>
-                <%= image_tag("generic-user.png", size: "40", alt: "generic-user", class: "card-trip-user avatar-bordered")%>
-            <% end %>
         </div>
-      </div>
-    <% end %>
-   </div>
+      <% end %>
+    </div>
  </div>
- 
