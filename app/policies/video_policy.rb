@@ -5,24 +5,28 @@ class VideoPolicy < ApplicationPolicy
     end
   end
 
-  def my_videos?
-    return true
-  end
-
   def new?
-    return true
+    user.present?
   end
 
   def create?
-    return true
+    user.present?
+  end
+
+  def my_videos?
+    user.present?
+  end
+
+  def edit?
+    record.user == user
   end
 
   def update?
-    return true
+    record.user == user
   end
 
   def destroy?
-    return true
+    record.user == user
   end
 
 end
