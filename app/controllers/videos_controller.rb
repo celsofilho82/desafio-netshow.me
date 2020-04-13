@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: [:edit, :update, :destroy]
+  before_action :set_video, only: [:edit, :update, :destroy, :show]
   skip_before_action :authenticate_user!, only: :index
   
   def my_videos
@@ -9,6 +9,9 @@ class VideosController < ApplicationController
   
   def index
     @videos = policy_scope(Video)
+  end
+
+  def show
   end
   
   def new

@@ -4,7 +4,7 @@ class VideoPolicy < ApplicationPolicy
       scope.all
     end
   end
-
+  
   def new?
     user.present?
   end

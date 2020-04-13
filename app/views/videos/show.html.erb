@@ -1,0 +1,9 @@
+<div class="container">
+  <video id=video width=960 height=540 class="video-js vjs-default-skin" controls>
+    <source src=<%= @video.url %> type="application/x-mpegURL">
+  </video>
+  <script>
+    var player = videojs('video');
+  </script>
+  <p><%= link_to "Back", :back %></p><br>
+</div>
