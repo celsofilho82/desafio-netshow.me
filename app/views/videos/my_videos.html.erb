@@ -1,14 +1,18 @@
 <div class="container">
   <p><%= link_to "New Video", new_user_video_path(current_user) , class: "btn btn-primary" %></p>
-  <% @videos.each do |video| %>
-    <div class="card-product">
-      <img src="https://res.cloudinary.com/celsofilho82/image/upload/v1586797470/mlgk6pifww1zfijdmf5n.jpg" />
-      <div class="card-product-infos">
-        <h2><%= video.title %></h2>
-        <p><%= video.description %></p>
-        <p><%= link_to "Edit", edit_user_video_path(current_user, video) %></p>
-        <p><%= link_to "Delete", video_path(video), method: :delete, data: { confirm: "Are you sure?" } %></p>
+  <div class="row">
+    <% @videos.each do |video| %>
+      <div class="col-sm-6">
+        <div class="card-product">
+          <img src="https://res.cloudinary.com/celsofilho82/image/upload/v1586797470/mlgk6pifww1zfijdmf5n.jpg" />
+          <div class="card-product-infos">
+            <h2><%= video.title %></h2>
+            <p><%= video.description %></p>
+            <p><%= link_to "Edit", edit_user_video_path(current_user, video) %></p>
+            <p><%= link_to "Delete", video_path(video), method: :delete, data: { confirm: "Are you sure?" } %></p>
+          </div>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
